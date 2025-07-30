@@ -2,22 +2,6 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import google.generativeai as genai
 
-# prompt = f"""Klasifikasikan teks berikut ke dalam salah satu kategori berikut:
-#     - Buying
-#     - Selling
-#     - Sharing
-#     - Trading
-    
-#     Hanya kembalikan satu kata dari kategori di atas, jangan ada teks tambahan dan gunakan bahasa inggris.
-#     """
-
-# genai.configure(api_key="AIzaSyDWYRQ1n3j5vXdOl0K1eGwC5gpAEl70vUo")
-
-# model = genai.GenerativeModel("gemini-1.5-flash", system_instruction=prompt)
-    
-# print(model.generate_content("Dapet dari mesin claw wkwkw yg mau nampung, chat me aja"))
-
-
 with open("html_table.txt", "r", encoding="utf-8") as file:
     html_content = file.read()
 
