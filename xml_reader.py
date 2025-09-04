@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import pandas as pd
-import google.generativeai as genai
 
 with open("html_table.txt", "r", encoding="utf-8") as file:
     html_content = file.read()
@@ -14,7 +13,9 @@ for post in posts:
     try:
         date_span = post.find_all("span")[0].text.strip()
 
-        post_text_span = post.find("span", style=lambda value: value and "line-clamp" in value)
+        post_text_span = post.find(
+            "span", style=lambda value: value and "line-clamp" in value
+        )
         post_text = post_text_span.text.strip() if post_text_span else ""
 
         metrics = post.find_all("div", class_="xyqm7xq")
@@ -22,13 +23,15 @@ for post in posts:
         likes = metrics[1].text.strip() if len(metrics) > 1 else "0"
         impressions = metrics[2].text.strip() if len(metrics) > 2 else "0"
 
-        data.append({
-            "Date": date_span,
-            "Post": post_text,
-            "Comments": comments,
-            "Reactions": likes,
-            "Views": impressions
-        })
+        data.append(
+            {
+                "Date": date_span,
+                "Post": post_text,
+                "Comments": comments,
+                "Reactions": likes,
+                "Views": impressions,
+            }
+        )
     except Exception as e:
         continue
 
